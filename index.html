@@ -4,60 +4,194 @@
     <meta charset="utf-8"/>
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <link rel="stylesheet" href="jquery.mobile-1.4.5.min.css">
+    <!--<link rel="stylesheet" href="jquery.mobile-1.4.5.min.css">-->
     <script src="jquery.js"></script>
-    <script src="jquery.mobile-1.4.5.js"></script>
+    <!--<script src="jquery.mobile-1.4.5.js"></script>-->
 
 
 </head>
 <body>
 
 
+<canvas id="wave" width="800" height="600" style="border:1px solid #c3c3c3;">
+    Your browser does not support the canvas element.
+</canvas>
+
+
+<script type="text/javascript">
+
+    function WaveCtrl(ctx,girdNumX,girdNumY) {
+        var girdNumX = girdNumX;
+        var girdNumY = girdNumY;
+        var ctx = ctx;
+        var width = ctx.canvas.width;
+        var height = ctx.canvas.height;
+        var waveRect = new Object();
+        waveRect.x = 20;
+        waveRect.y = 20;
+        waveRect.width = width-40;
+        waveRect.height = height-40;
+        var channelList = new Array();
+
+        ctx.fillStyle="rgba(20,20,20,0.4)";
+        ctx.fillRect(0,0,width,height);
+
+        this.addChannel = addChannel;
+        this.setChannelWave = setChannelWave;
+        this.updateWave = updateWave;
 
 
 
 
-<div data-role="page" id="pageone" data-theme="a">
-    <div data-role="main" class="ui-content">
-        <div data-role="navbar">
-            <ul>
-                <li><a href="#">主页</a></li>
-                <li><a href="#">第二页</a></li>
-                <li><a href="#">搜索</a></li>
-            </ul>
-        </div>
-    </div>
+        function addChannel(name,color,pos) {
+            var channel = new Object();
+            channel.name = name;
+            channel.color = color;
+            channel.pos = pos;
+        }
+        function setChannelWave(name,wave) {
+            channelList[name].wave = wave;
+        }
 
-    <div data-role="main" class="ui-content">
-        <button class="ui-btn">按钮</button>
-    </div>
-</div>
+        function drawShortLine(x1,y1,x2,y2,num,len) {
+            if (x1 == x2) {
+                var gird = (y2 - y1) / num;
+                var x = x1-len/2;
+                for(var i=0;i<num+1;i++) {
+                    var y = y1+gird*i;
+                    ctx.moveTo(x,y);
+                    ctx.lineTo(x+len,y);
+                }
+            }
+        }
+
+        function updateWave() {
+            ctx.clearRect(waveRect.x,waveRect.y,waveRect.width,waveRect.height);
+            ctx.beginPath();
+            ctx.fillStyle="rgba(20,20,20,0.8)";
+            ctx.fillRect(waveRect.x,waveRect.y,waveRect.width,waveRect.height);
+
+
+            ctx.strokeStyle = "#aaaaaa";
+            ctx.lineWidth = 1;
+            var peerX = waveRect.width/girdNumX;
+            var peerY = waveRect.height/girdNumY;
+            for(var i = 0; i < girdNumX+1; i++) {
+                var x = peerX*i;
+                ctx.moveTo(waveRect.x+x,waveRect.y);
+                ctx.lineTo(waveRect.x+x,waveRect.y+waveRect.height);
+//                drawShortLine(waveRect.x+x,waveRect.y,waveRect.x+x,waveRect.y+waveRect.height,40,6);
+            }
+            for(var i = 0; i < girdNumY+1; i++) {
+                var y = peerY*i;
+                ctx.moveTo(waveRect.x,waveRect.y+y);
+                ctx.lineTo(waveRect.x+waveRect.width,waveRect.y+y);
+            }
+            ctx.stroke();
+
+            ctx.beginPath();
+            ctx.strokeStyle = "#ffffff";
+            ctx.lineWidth = 2;
+            peerX = waveRect.width/2;
+            peerY = waveRect.height/2;
+            for(var i = 0; i < 3; i++) {
+                var x = peerX*i;
+                ctx.moveTo(waveRect.x+x,waveRect.y);
+                ctx.lineTo(waveRect.x+x,waveRect.y+waveRect.height);
+            }
+            for(var i = 0; i < 3; i++) {
+                var y = peerY*i;
+                ctx.moveTo(waveRect.x,waveRect.y+y);
+                ctx.lineTo(waveRect.x+waveRect.width,waveRect.y+y);
+            }
+
+
+
+
+
+            ctx.stroke();
+        }
+    }
+    $(document).ready(function() {
+        var c=document.getElementById("wave");
+        var ctx=c.getContext("2d");
+        var waveCtrl = new WaveCtrl(ctx,10,8);
+        waveCtrl.updateWave();
+//        ctx.fillRect(0,0,100,100);
+//        ctx.stroke();
+    });
+
+
+
+//    $(document).ready(function(){
+//        var c=document.getElementById("wave");
+//        var ctx=c.getContext("2d");
+//        var start = 0;
+//
+//        ctx.strokeStyle = "#0000ff";
+//        ctx.lineWidth = 4;
+//
+//
+//
+//        //cxt.lineTo(150,50);
+//        function timer() {
+//            var waveData = new Array();
+//            waveData["ds"] = 1;
+//            for (var i = 0; i < 960; i++) {
+//                waveData[i] = Math.sin(4*(i+start) * Math.PI / 180);
+//            }
+//
+//
+//
+//            ctx.clearRect(0,0,960,400);
+//            ctx.beginPath();
+//            ctx.moveTo(0, 200 + waveData[0] * 180);
+//            for (var i = 0; i < 960; i++) {
+//                ctx.lineTo(i, 200 + waveData[i] * 180);
+//            }
+//
+//            start += 1;
+//            ctx.stroke();
+//
+//        }
+//        timer();
+//        setInterval(timer,20);
+//
+//
+//    });
+
+
+</script>
+
+
 
 <script>
-    function isLandscape() {
-        if(window.innerHeight > window.innerWidth) {
-            return false;
-        }
-        else {
-            return true;
-        }
-    }
-    function processLanscape(type) {
-        if(!type) {
-            $("#pageone").hide();
-        }
-        else {
-            $("#pageone").show();
-        }
-    }
 
-    $(document).on("pagecreate",function(event){
-        processLanscape(isLandscape());
 
-        $(window).on("orientationchange",function(event){
-            processLanscape(event.orientation == "landscape");
-        });
-    });
+//    function isLandscape() {
+//        if(window.innerHeight > window.innerWidth) {
+//            return false;
+//        }
+//        else {
+//            return true;
+//        }
+//    }
+//    function processLanscape(type) {
+//        if(!type) {
+//            $("#pageone").hide();
+//        }
+//        else {
+//            $("#pageone").show();
+//        }
+//    }
+//
+//    $(document).on("pagecreate",function(event){
+//        processLanscape(isLandscape());
+//
+//        $(window).on("orientationchange",function(event){
+//            processLanscape(event.orientation == "landscape");
+//        });
+//    });
 </script>
 </body>
 </html>

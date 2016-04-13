@@ -1,12 +1,12 @@
 /**
  * Created by Administrator on 2016/4/13.
  */
-function WaveCtrl(ctx,girdNumX,girdNumY) {
+function WaveCtrl(girdNumX,girdNumY) {
     var girdNumX = girdNumX;
     var girdNumY = girdNumY;
-    var ctx = ctx;
-    var width = ctx.canvas.width;
-    var height = ctx.canvas.height;
+    var ctx ;
+    var width = 0;
+    var height = 0;
     var waveRect = new Object();
     waveRect.x = 20;
     waveRect.y = 20;
@@ -14,8 +14,7 @@ function WaveCtrl(ctx,girdNumX,girdNumY) {
     waveRect.height = height-40;
     var channelList = new Array();
     var girdValueY = 20;
-    ctx.fillStyle="rgba(20,20,20,0.4)";
-    ctx.fillRect(0,0,width,height);
+
 
     this.addChannel = addChannel;
     this.setChannelWave = setChannelWave;
@@ -40,15 +39,14 @@ function WaveCtrl(ctx,girdNumX,girdNumY) {
             ctx.beginPath();
             ctx.strokeStyle = channel.color;
             ctx.lineWidth = 2;
-            var x = waveRect.x+1;
-            var y = waveRect.y+waveRect.height/2 * (1 - channel.pos);
-            y =  checkInRect(y);
-            ctx.moveTo(x, y);
             for (var j = 1; j < waveRect.width; j++) {
                 var waveCnt = Math.round(wave.length/waveRect.width*j);
                 var x = waveRect.x+j;
                 var y =  waveRect.y+waveRect.height/2 * (1 - channel.pos)  - wave[waveCnt] / (girdValueY*8/waveRect.height) ;
                 y =  checkInRect(y);
+                if(j == 1) {
+                    ctx.moveTo(x, y);
+                }
                 ctx.lineTo(x,y);
             }
             ctx.stroke();
@@ -93,8 +91,19 @@ function WaveCtrl(ctx,girdNumX,girdNumY) {
 
 
 
-    function update() {
+    function update(ctxU) {
+        ctx = ctxU;
+        width = ctx.canvas.width;
+        height = ctx.canvas.height;
+        waveRect.x = 20;
+        waveRect.y = 20;
+        waveRect.width = width-40;
+        waveRect.height = height-40;
+        ctx.beginPath();
+        ctx.fillStyle="rgba(128,128,128,0.4)";
+        ctx.fillRect(0,0,width,height);
         ctx.clearRect(waveRect.x,waveRect.y,waveRect.width,waveRect.height);
+        ctx.stroke();
         drawBackGround();
         drawWave();
 

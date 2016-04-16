@@ -6,8 +6,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no" />
 
     <!--<link rel="stylesheet" href="jquery.mobile-1.4.5.min.css">-->
-    <script src="jquery.js"></script>
-    <script src="WaveCtrl.js"></script>
+    <script src="js/jquery.js"></script>
+    <script src="js/WaveCtrl.js"></script>
     <!--<script src="jquery.mobile-1.4.5.js"></script>-->
 
 
@@ -45,9 +45,9 @@
 
             var wave = new Array();
             for (var i = 0; i < 1600; i++) {
-                wave[i] = Math.round(2 * 1000 * Math.sin(4 * (i+start) * Math.PI / 180));
+                waveData[i] = Math.round(2 * 1000 * Math.sin(4 * (i+start) * Math.PI / 180));
             }
-            waveCtrl.setChannelWave("2", wave);
+            waveCtrl.setChannelWave("2", waveData);
             waveCtrl.update(ctx);
             start += 5;
         }

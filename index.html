@@ -18,18 +18,14 @@
     <link href="css/autoSimSystem.css" rel="stylesheet">
     <style type="text/css">
 
-    .issue-list {
-        overflow-y: auto;
+    .table {
+        height:100%;
+        width: 100%;
     }
 
-    .issue-list > li > a{
-        box-sizing: border-box;
-        line-height: 30px;
-        padding-left: 30px;
-    }
-    .issue-list-header {
+    .table > .header {
         width: 100%;
-        height: 3em;
+        height: 25%;
         line-height: 3em;
         overflow: hidden;
         background:  rgb(255,125,1);
@@ -37,6 +33,47 @@
         color: #ffffff;
         font-weight:bold;
     }
+
+    .table > .data {
+        width: 100%;
+        height: 75%;
+    }
+    .table > .data > ul {
+        overflow-y: auto;
+    }
+
+    .table > .data > ul > li > a{
+        box-sizing: border-box;
+        line-height: 30px;
+        padding-left: 30px;
+    }
+
+
+    .table-issue-num {
+        width: 46%;
+        float:left;
+    }
+
+    .table-issue-num > .header {
+        background:  rgb(255,125,1);
+        color: #ffffff;
+    }
+
+    .table-issue-type {
+        width: 46%;
+        float:left;
+        padding-left: 8%;
+    }
+
+    .table-issue-type > .header {
+        background:  rgb(169,170,171);
+        color: #ffffff;
+    }
+
+
+
+
+
 
 
     </style>
@@ -54,65 +91,105 @@
 
 
     <div class="content-area">
+                <div style="height: 61%;width: 100%;">
+                    <div class="table table-issue-num">
+                        <div class="header">
+                            故障号
+                        </div>
+                        <div class="data">
+                            <ul class="ul-base">
+                                <li><a href="#">故障1</a></li>
+                                <li><a href="#">故障2</a></li>
+                                <li><a href="#">故障3</a></li>
+                                <li><a href="#">故障4</a></li>
+                                <li><a href="#">故障5</a></li>
+                                <li><a href="#">故障6</a></li>
+                                <li><a href="#">故障7</a></li>
+                                <li><a href="#">故障8</a></li>
+                                <li><a href="#">故障9</a></li>
+                                <li><a href="#">故障10</a></li>
+                                <li><a href="#">故障11</a></li>
+                                <li><a href="#">故障12</a></li>
+                                <li><a href="#">故障13</a></li>
+                                <li><a href="#">故障14</a></li>
+                                <li><a href="#">故障15</a></li>
+                                <li><a href="#">故障16</a></li>
+                                <li><a href="#">故障17</a></li>
+                                <li><a href="#">故障1</a></li>
+                            </ul>
+                        </div>
 
-        <div style="width: 50%;height:63%;">
-            <div class="issue-list-header">
-                故障号
-            </div>
-            <ul  class="ul-base issue-list ">
-                <li><a href="#">故障1</a></li>
-                <li><a href="#">故障2</a></li>
-                <li><a href="#">故障3</a></li>
-                <li><a href="#">故障4</a></li>
-                <li><a href="#">故障5</a></li>
-                <li><a href="#">故障6</a></li>
-                <li><a href="#">故障7</a></li>
-                <li><a href="#">故障8</a></li>
-                <li><a href="#">故障9</a></li>
-                <li><a href="#">故障10</a></li>
-                <li><a href="#">故障11</a></li>
-                <li><a href="#">故障12</a></li>
-                <li><a href="#">故障13</a></li>
-                <li><a href="#">故障14</a></li>
-                <li><a href="#">故障15</a></li>
-                <li><a href="#">故障16</a></li>
-                <li><a href="#">故障17</a></li>
-                <li><a href="#">故障1</a></li>
-                <li><a href="#">故障2</a></li>
-                <li><a href="#">故障3</a></li>
-                <li><a href="#">故障4</a></li>
-                <li><a href="#">故障5</a></li>
-                <li><a href="#">故障6</a></li>
-                <li><a href="#">故障7</a></li>
-                <li><a href="#">故障8</a></li>
-                <li><a href="#">故障9</a></li>
-                <li><a href="#">故障10</a></li>
-                <li><a href="#">故障11</a></li>
-                <li><a href="#">故障12</a></li>
-                <li><a href="#">故障13</a></li>
-                <li><a href="#">故障14</a></li>
-                <li><a href="#">故障15</a></li>
-                <li><a href="#">故障16</a></li>
-                <li><a href="#">故障17</a></li>
-                <li><a href="#">故障1</a></li>
-                <li><a href="#">故障2</a></li>
-                <li><a href="#">故障3</a></li>
-                <li><a href="#">故障4</a></li>
-                <li><a href="#">故障5</a></li>
-                <li><a href="#">故障6</a></li>
-                <li><a href="#">故障7</a></li>
-                <li><a href="#">故障8</a></li>
-                <li><a href="#">故障9</a></li>
-                <li><a href="#">故障10</a></li>
-                <li><a href="#">故障11</a></li>
-                <li><a href="#">故障12</a></li>
-                <li><a href="#">故障13</a></li>
-                <li><a href="#">故障14</a></li>
-                <li><a href="#">故障15</a></li>
-                <li><a href="#">故障16</a></li>
-                <li><a href="#">故障17</a></li>
-            </ul>
-        </div>
+                    </div>
+
+                    <div class="table table-issue-type">
+                        <div class="header">
+                            故障类型
+                        </div>
+                        <div class="data">
+                            <ul  class="ul-base">
+                                <li><a href="#">清除故障</a></li>
+                                <li><a href="#">断路</a></li>
+                                <li><a href="#">对地短路</a></li>
+                                <li><a href="#">串联电阻</a></li>
+                                <li><a href="#">并联电阻</a></li>
+                                <li><a href="#">间歇性断路</a></li>
+                                <li><a href="#">间歇性对地短路</a></li>
+                                <li><a href="#">间歇性串联电阻</a></li>
+                                <li><a href="#">间歇性并联电阻</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <!--<div style="background-color: #dddddd;height: 35%;width: 100%;box-sizing: border-box;padding-top: 4%">-->
+                    <!--2-->
+                <!--</div>-->
+
+
+
+        <!--<div class="table table-issue-num">-->
+            <!--<div class="issue-num-header">-->
+                <!--故障号-->
+            <!--</div>-->
+            <!--<ul  class="ul-base">-->
+                <!--<li><a href="#">故障1</a></li>-->
+                <!--<li><a href="#">故障2</a></li>-->
+                <!--<li><a href="#">故障3</a></li>-->
+                <!--<li><a href="#">故障4</a></li>-->
+                <!--<li><a href="#">故障5</a></li>-->
+                <!--<li><a href="#">故障6</a></li>-->
+                <!--<li><a href="#">故障7</a></li>-->
+                <!--<li><a href="#">故障8</a></li>-->
+                <!--<li><a href="#">故障9</a></li>-->
+                <!--<li><a href="#">故障10</a></li>-->
+                <!--<li><a href="#">故障11</a></li>-->
+                <!--<li><a href="#">故障12</a></li>-->
+                <!--<li><a href="#">故障13</a></li>-->
+                <!--<li><a href="#">故障14</a></li>-->
+                <!--<li><a href="#">故障15</a></li>-->
+                <!--<li><a href="#">故障16</a></li>-->
+                <!--<li><a href="#">故障17</a></li>-->
+                <!--<li><a href="#">故障1</a></li>-->
+            <!--</ul>-->
+        <!--</div>-->
+
+        <!--<div class="table table-issue-type">-->
+            <!--<div class="issue-type-header">-->
+                <!--故障类型-->
+            <!--</div>-->
+            <!--<ul  class="ul-base">-->
+                <!--<li><a href="#">清除故障</a></li>-->
+                <!--<li><a href="#">断路</a></li>-->
+                <!--<li><a href="#">对地短路</a></li>-->
+                <!--<li><a href="#">串联电阻</a></li>-->
+                <!--<li><a href="#">并联电阻</a></li>-->
+                <!--<li><a href="#">间歇性断路</a></li>-->
+                <!--<li><a href="#">间歇性对地短路</a></li>-->
+                <!--<li><a href="#">间歇性串联电阻</a></li>-->
+                <!--<li><a href="#">间歇性并联电阻</a></li>-->
+            <!--</ul>-->
+        <!--</div>-->
+
+
 
     </div>
 </div>

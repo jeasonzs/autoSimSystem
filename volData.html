@@ -10,25 +10,21 @@
     <link href="css/autoSimSystem.css" rel="stylesheet">
 
     <style>
-        .header {
-            background-color: rgb(255,125,1);
-            height: 32px;
+
+        table {
+            height: 100%;
+            width: 100%;
             text-align: center;
-            position: relative;
-            top: 100px;
-            z-index:2;
         }
 
-        .vol-table {
 
-        }
     </style>
 </head>
 <body>
 
 <div class="contianer">
     <div class="nav-area">
-        <ul class="ul-base nav">
+        <ul class="nav">
             <li><a href="index.html"><img src="images/nav_icon1_normal.png">故障设置</a></li>
             <li  class="active"><a href="volData.html"><img src="images/nav_icon2_select.png">电压数据</a></li>
             <li><a href="waveData.html"><img src="images/nav_icon3_normal.png">波形查看</a></li>
@@ -38,18 +34,15 @@
 
 
     <div class="content-area">
-        <div style="height: 100%;width: 100%">
-            <table border="0" cellspacing="0" cellpadding="0" style="height: auto;width: 100%;text-align: center;">
-                <tr class="header">
-                    <th>故障号</th>
-                    <th>电压1(V)</th>
-                    <th>电压2(V)</th>
-                </tr>
-            </table>
+        <div class="table">
+            <div class="header">
+                <table border="0" cellspacing="0" cellpadding="0">
+                    <tr><th>故障号</th><th>电压1(V)</th><th>电压2(V)</th></tr>
+                </table>
+            </div>
 
-            <div style="overflow-y: auto;height: 90%;width: 100%;background-color: rgb(247,247,247)">
-
-                <table border="0" cellspacing="0" cellpadding="0" style="height: 100%;width: 100%;text-align: center;">
+            <div class="data">
+                <table border="0" cellspacing="0" cellpadding="0">
                     <tr><td>故障1</td><td>00.00</td><td>12.56</td></tr>
                     <tr><td>故障2</td><td>00.00</td><td>12.56</td></tr>
                     <tr><td>故障3</td><td>00.00</td><td>12.56</td></tr>
@@ -75,8 +68,6 @@
                     <tr><td>故障23</td><td>00.00</td><td>12.56</td></tr>
                     <tr><td>故障24</td><td>00.00</td><td>12.56</td></tr>
                     <tr><td>故障25</td><td>00.00</td><td>12.56</td></tr>
-
-
 
                 </table>
             </div>

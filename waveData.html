@@ -9,8 +9,59 @@
 
     <link href="css/autoSimSystem.css" rel="stylesheet">
 
+    <style>
+        .content-wave {
+            height: 100%;
+            width: 100%;
+            display: flex;
+            justify-content:space-between;
+            flex-wrap: wrap;
+            align-content: space-between;
+        }
+        .table-wave-data {
+             width: 36%;
+             height: 76%;
+         }
 
+        .table-wave-data > .header {
+            background:  rgb(255,125,1);
+            color: #ffffff;
+        }
 
+        .table-wave-info {
+            width: 60%;
+            height: 76%;
+        }
+
+        .table-wave-info > .header {
+            background:  rgb(169,170,171);
+            color: #ffffff;
+        }
+
+        .ul-sel {
+            height: 20%;
+            width: 100%;
+        }
+        .ul-sel > ul > li {
+            background-color: rgb(169,170,171);
+            height: 100%;
+            width: 100px;
+            float: left
+        }
+        .ul-sel > ul > .sel {
+            background-color: rgb(255,125,1);
+        }
+
+        .ul-sel > ul > li > a{
+            display: flex;
+            flex-direction:column ;
+            justify-content: center;
+            align-items: center;
+        }
+        /*a:hover {*/
+            /*background-color:  rgb(250,184,123);*/
+        /*}*/
+    </style>
 </head>
 <body>
 
@@ -26,10 +77,65 @@
 
 
     <div class="content-area">
+        <div class="content-wave">
+            <div class="table table-wave-data">
+                <div class="header">数据</div>
+                <div class="data">
+                    <ul>
+                        <li><a href="#">数据1</a></li>
+                        <li><a href="#">数据2</a></li>
+                        <li><a href="#">数据3</a></li>
+                        <li><a href="#">数据4</a></li>
+                        <li><a href="#">数据5</a></li>
+                        <li><a href="#">数据6</a></li>
+                        <li><a href="#">数据7</a></li>
+                        <li><a href="#">数据8</a></li>
+                        <li><a href="#">数据9</a></li>
+                        <li><a href="#">数据10</a></li>
+                        <li><a href="#">数据11</a></li>
+                        <li><a href="#">数据12</a></li>
+                        <li><a href="#">数据13</a></li>
+                        <li><a href="#">数据14</a></li>
+                        <li><a href="#">数据15</a></li>
+                        <li><a href="#">数据16</a></li>
+                        <li><a href="#">数据17</a></li>
+                        <li><a href="#">数据18</a></li>
+                        <li><a href="#">数据19</a></li>
+                        <li><a href="#">数据20</a></li>
+                        <li><a href="#">数据21</a></li>
+                        <li><a href="#">数据22</a></li>
+                        <li><a href="#">数据23</a></li>
+                        <li><a href="#">数据24</a></li>
+                        <li><a href="#">数据25</a></li>
+                        <li><a href="#">数据26</a></li>
+                        <li><a href="#">数据27</a></li>
+
+                    </ul>
+                </div>
+            </div>
+
+
+            <div class="table table-wave-info">
+                <div class="header">介绍</div>
+                <div class="data">
+                    <p>dasdasdasdasdsad撒打开收到货撒谎都是独守空房假和尚堵路发送的附件是DFHA;SSLKA了快递师傅老师的开发商都浪费来的粉色的路口附近的身份卡登记卡活动我 发送到拉粉丝的李开复撒旦法发送的合法是否是罚款就分手的了开发商及东方时空度搜烹饪法撒酒疯就撒旦都是打开附件是电风扇大佛我时间开放接口来试试的福建省</p>
+                </div>
+            </div>
+
+            <div class="ul-sel">
+                <ul>
+                    <li class="sel"><a href="#">1</a></li>
+                    <li><a href="#">2</a></li>
+                    <li style="margin-left: 30px"><a href="#">确定</a></li>
+                </ul>
+            </div>
+
+
+        </div>
+
         <canvas id="wave" width="320" height="240" style="border:1px solid #c3c3c3; width: 100%;height: 100%; display: none">
             Your browser does not support the canvas element.
         </canvas>
-        dasdas
     </div>
 </div>
 
@@ -39,6 +145,21 @@
 
 
     $(document).ready(function() {
+
+        $(".ul-sel ul li").click(function(){
+            var a_type = $(this).children(":first").html();
+            if(a_type == "确定") {
+                $(".content-wave").hide();
+                $("#wave").show();
+            }
+            else {
+                $(this).toggleClass("sel");
+                $(".content-wave").show();
+            }
+        });
+
+
+
         var c=document.getElementById("wave");
         var ctx=c.getContext("2d");
 
@@ -68,28 +189,11 @@
 
         timer();
         setInterval(timer,50);
-        ctx.canvas.width = $("#wave").style.width;
-        ctx.canvas.height = $("#wave").style.height;
-        $("#add").click(function(){
-            ctx.canvas.width = 1024;
-            ctx.canvas.height = 768;
-            //alert($("#wave").width());
-            //$("#wave").width(1024);
+//        ctx.canvas.width = $("#wave").style.width;
+//        ctx.canvas.height = $("#wave").style.height;
 
-        });
-        $("#sub").click(function(){
-            ctx.canvas.width = 480;
-            ctx.canvas.height = 320;
-            //alert($("#wave").width());
-        });
-        $("#test").click(function(){
-            $("#wave").width(480);
-//            $("#wave").height(480);
 
-//            $("#wave").height("70%");
-            //$("#wave").css("width","100%");
-            //alert(document.getElementById("wave").clientWidth);
-        });
+
     });
 
 

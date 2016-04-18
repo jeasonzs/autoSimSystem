@@ -112,6 +112,7 @@ ul > li > a
     width: 100%;
     flex: 1;
     overflow-y: auto;
+    overflow-x: hidden;
     background-color:rgb(247,247,247);
 }
 
@@ -122,26 +123,8 @@ ul > li > a
 }
 
 
-/*a:hover,a:active*/
-/*{*/
-/*background-color:#bebebe;*/
-/*}*/
+p {
+    word-break: break-all;
+    text-indent: 1cm;
+}
 
-/*img {*/
-/*/!*vertical-align:middle;*!/*/
-/*/!*margin-left: 100px;*!/*/
-
-/*}*/
-
-/*div {*/
-/*/!*line-height: 0px;*!/*/
-/*margin:0px;*/
-/*padding:0px;*/
-/*display: block;*/
-/*height: 100px;*/
-/*width: 100px;*/
-/*background: #adadad;*/
-
-/*/!*text-align: center;*!/*/
-/*margin:0 auto;*/
-/*}*/

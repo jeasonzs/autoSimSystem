@@ -77,24 +77,27 @@
                 <div class="header">故障号</div>
                 <div class="data">
                     <ul>
-                        <li><a href="#">故障1</a></li>
-                        <li><a href="#">故障2</a></li>
-                        <li><a href="#">故障3</a></li>
-                        <li><a href="#">故障4</a></li>
-                        <li><a href="#">故障5</a></li>
-                        <li><a href="#">故障6</a></li>
-                        <li><a href="#">故障7</a></li>
-                        <li><a href="#">故障8</a></li>
-                        <li><a href="#">故障9</a></li>
-                        <li><a href="#">故障10</a></li>
-                        <li><a href="#">故障11</a></li>
-                        <li><a href="#">故障12</a></li>
-                        <li><a href="#">故障13</a></li>
-                        <li><a href="#">故障14</a></li>
-                        <li><a href="#">故障15</a></li>
-                        <li><a href="#">故障16</a></li>
-                        <li><a href="#">故障17</a></li>
-                        <li><a href="#">故障1</a></li>
+                        {% for issue in issues %}
+                            <li><a href="#">{{ issue }}</a></li>
+                        {% end %}
+                        <!--<li><a href="#">故障1</a></li>-->
+                        <!--<li><a href="#">故障2</a></li>-->
+                        <!--<li><a href="#">故障3</a></li>-->
+                        <!--<li><a href="#">故障4</a></li>-->
+                        <!--<li><a href="#">故障5</a></li>-->
+                        <!--<li><a href="#">故障6</a></li>-->
+                        <!--<li><a href="#">故障7</a></li>-->
+                        <!--<li><a href="#">故障8</a></li>-->
+                        <!--<li><a href="#">故障9</a></li>-->
+                        <!--<li><a href="#">故障10</a></li>-->
+                        <!--<li><a href="#">故障11</a></li>-->
+                        <!--<li><a href="#">故障12</a></li>-->
+                        <!--<li><a href="#">故障13</a></li>-->
+                        <!--<li><a href="#">故障14</a></li>-->
+                        <!--<li><a href="#">故障15</a></li>-->
+                        <!--<li><a href="#">故障16</a></li>-->
+                        <!--<li><a href="#">故障17</a></li>-->
+                        <!--<li><a href="#">故障1</a></li>-->
                     </ul>
                 </div>
             </div>

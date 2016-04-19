@@ -10,6 +10,34 @@ body,html{
     width: 100%;
 }
 
+ul {
+    margin: 0px;
+    padding: 0px;
+    height: 100%;
+    width: 100%;
+    list-style-type: none;
+    /*background-color:rgb(247,247,247);*/
+}
+
+a {
+    font-weight:bold;
+    font-size: 16px;
+    color:rgb(51,51,51);
+    width:100%;
+    height: 100%;
+    text-decoration:none;
+    text-transform:uppercase;
+    display: flex;
+    flex-direction:column ;
+    justify-content: center;
+    align-items: center;
+}
+
+p {
+    word-break: break-all;
+    text-indent: 1cm;
+}
+
 .contianer {
     margin:0px;
     padding:0px;
@@ -32,44 +60,16 @@ body,html{
 }
 
 
-ul {
-    margin: 0px;
-    padding: 0px;
-    height: 100%;
-    width: 100%;
-    list-style-type: none;
-    background-color:rgb(247,247,247);
-}
-ul > li > a
-{
-    display:block;
-    font-weight:bold;
-    font-size: 16px;
-    color:rgb(51,51,51);
-    width:100%;
-    height: 100%;
-    text-decoration:none;
-    text-transform:uppercase;
 
-}
 
 .nav {
-
+    background-color:rgb(247,247,247);
 }
 
 .nav > li {
     height: 25%;
 }
 
-
-
-.nav > li > a
-{
-    display: flex;
-    flex-direction:column ;
-    justify-content: center;
-    align-items: center;
-}
 
 
 .nav-area .active {
@@ -117,14 +117,12 @@ ul > li > a
 }
 
 .table > .data > ul > li > a{
+    display: block;
     box-sizing: border-box;
     line-height: 30px;
     padding-left: 30px;
 }
 
 
-p {
-    word-break: break-all;
-    text-indent: 1cm;
-}
+
 

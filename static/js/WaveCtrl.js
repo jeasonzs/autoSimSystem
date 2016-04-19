@@ -95,10 +95,10 @@ function WaveCtrl(girdNumX,girdNumY) {
         ctx = ctxU;
         width = ctx.canvas.width;
         height = ctx.canvas.height;
-        waveRect.x = 20;
-        waveRect.y = 20;
-        waveRect.width = width-40;
-        waveRect.height = height-40;
+        waveRect.x = 4;
+        waveRect.y = 4;
+        waveRect.width = width-8;
+        waveRect.height = height-8;
         ctx.beginPath();
         ctx.fillStyle="rgba(128,128,128,0.4)";
         ctx.fillRect(0,0,width,height);
@@ -151,7 +151,7 @@ function WaveCtrl(girdNumX,girdNumY) {
 
         function drawBackGround(){
             ctx.beginPath();
-            ctx.fillStyle="rgba(10,10,10,1)";
+            ctx.fillStyle="rgba(20,20,20,1)";
             ctx.fillRect(waveRect.x,waveRect.y,waveRect.width,waveRect.height);
 
             ctx.strokeStyle = "#ffffff";

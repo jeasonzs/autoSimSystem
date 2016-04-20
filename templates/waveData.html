@@ -57,7 +57,6 @@
         .wave-contrl {
             width: 100%;
             height: 40px;
-            /*background-color: #005599;*/
             margin-top: 20px;
         }
 
@@ -68,19 +67,17 @@
             margin: 0px;
         }
 
-        .wave-contrl > ul > li {
-            width: 60px;
-            height: 100%;
-            float: left;
-            margin-right: 20px;
-        }
-
-        .wave-contrl > ul > li > a {
+        .wave-contrl > a {
             background-color: rgb(169,170,171);
             flex-direction:row;
             padding-left: 5px;
             font-size: 12px;
             color: #ffffff;
+
+            width: 60px;
+            height: 100%;
+            float: left;
+            margin-right: 20px;
         }
 
     </style>
@@ -161,15 +158,13 @@
             </canvas>
 
             <div class="wave-contrl">
-                <ul>
-                    <li><a href="#">X轴<img src="../static/images/icon-zoom-in.png"></a></li>
-                    <li><a href="#">X轴<img src="../static/images/icon-zoom-out.png"></a></li>
-                    <li><a href="#">Y轴<img src="../static/images/icon-zoom-in.png"></a></li>
-                    <li><a href="#">Y轴<img src="../static/images/icon-zoom-out.png"></a></li>
-                    <li><a href="#">向上<img src="../static/images/icon-move.png"></a></li>
-                    <li><a href="#">向下<img src="../static/images/icon-move.png"></a></li>
-                    <li style="float: right;width: 40px"><a href="#"><img src="../static/images/icon-reset.png"></a></li>
-                </ul>
+                <a href="#">X轴<img src="../static/images/icon-zoom-in.png"></a>
+                <a href="#">X轴<img src="../static/images/icon-zoom-out.png"></a>
+                <a href="#">Y轴<img src="../static/images/icon-zoom-in.png"></a>
+                <a href="#">Y轴<img src="../static/images/icon-zoom-out.png"></a>
+                <a href="#">向上<img src="../static/images/icon-move.png"></a>
+                <a href="#">向下<img src="../static/images/icon-move.png"></a>
+                <a href="#" style="float: right;width: 40px"><img src="../static/images/icon-reset.png"></a>
             </div>
         </div>
 
@@ -204,6 +199,7 @@
                 $(".wave-page").hide();
             }
         });
+
 
 
 
@@ -244,44 +240,24 @@
         timer();
         setInterval(timer,20);
 
+
+
+        var host = 'ws://localhost:8000/dataPush.py';
+
+        var websocket = new WebSocket(host);
+
+        websocket.onopen = function (evt) { };
+        websocket.onmessage = function(evt) {
+//                $('#count').html($.parseJSON(evt.data)['inventoryCount']);
+            alert(evt.data);
+        };
+        websocket.onerror = function (evt) { };
+//        websocket.send('im brower');
+
+
     });
 
-
-
-
-
-
 </script>
 
-
-
-<script>
-
-
-//    function isLandscape() {
-//        if(window.innerHeight > window.innerWidth) {
-//            return false;
-//        }
-//        else {
-//            return true;
-//        }
-//    }
-//    function processLanscape(type) {
-//        if(!type) {
-//            $("#pageone").hide();
-//        }
-//        else {
-//            $("#pageone").show();
-//        }
-//    }
-//
-//    $(document).on("pagecreate",function(event){
-//        processLanscape(isLandscape());
-//
-//        $(window).on("orientationchange",function(event){
-//            processLanscape(event.orientation == "landscape");
-//        });
-//    });
-</script>
 </body>
 </html>

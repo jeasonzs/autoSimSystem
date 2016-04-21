@@ -96,7 +96,7 @@
 
 
     <div class="content-area">
-        <div class="content-wave" >
+        <div class="content-wave"   style="display: none">
             <div class="table table-wave-data">
                 <div class="header">数据</div>
                 <div class="data">
@@ -152,18 +152,18 @@
 
         </div>
 
-        <div class="wave-page"  style="display: none">
+        <div class="wave-page">
             <canvas id="wave" width="300" height="200" style="border:1px solid #c3c3c3; width: 100%;height: 100%">
                 Your browser does not support the canvas element.
             </canvas>
 
             <div class="wave-contrl">
-                <a href="#">X轴<img src="../static/images/icon-zoom-in.png"></a>
-                <a href="#">X轴<img src="../static/images/icon-zoom-out.png"></a>
-                <a href="#">Y轴<img src="../static/images/icon-zoom-in.png"></a>
-                <a href="#">Y轴<img src="../static/images/icon-zoom-out.png"></a>
-                <a href="#">向上<img src="../static/images/icon-move.png"></a>
-                <a href="#">向下<img src="../static/images/icon-move.png"></a>
+                <a id ="x_zoom_in" href="#">X轴<img src="../static/images/icon-zoom-in.png"></a>
+                <a id ="x_zoom_out" href="#">X轴<img src="../static/images/icon-zoom-out.png"></a>
+                <a id ="y_zoom_in" href="#">Y轴<img src="../static/images/icon-zoom-in.png"></a>
+                <a id ="y_zoom_out" href="#">Y轴<img src="../static/images/icon-zoom-out.png"></a>
+                <a id ="up" href="#">向上<img src="../static/images/icon-move.png"></a>
+                <a id ="down" href="#">向下<img src="../static/images/icon-move.png"></a>
                 <a href="#" style="float: right;width: 40px"><img src="../static/images/icon-reset.png"></a>
             </div>
         </div>
@@ -180,10 +180,14 @@
 
 
     $(document).ready(function() {
+        var pos2 = -0.5;
+        var gird = 1000;
+        var sample = 1;
         var ctx=document.getElementById("wave").getContext("2d");
 
         $(window).resize(function() {
             resizeWave();
+            updateWave();
         });
 
         $(".ul-sel ul li").click(function(){
@@ -200,16 +204,58 @@
             }
         });
 
+        $(".wave-contrl a").click(function(){
+            var id = $(this).attr("id");
+            if(id == "up") {
+                pos2 += 0.05;
+            }
+
+            if(id == "down") {
+                pos2 -= 0.05;
+            }
+
+            if(id == "y_zoom_in") {
+                gird -= 10;
+            }
+            if(id == "y_zoom_out") {
+                gird += 10;
+            }
+
+            if(id == "x_zoom_out") {
+                sample++;
+                ctrlSample(sample);
+            }
+            if(id == "x_zoom_in") {
+                if(sample > 1)
+                    sample--;
+                ctrlSample(sample);
+            }
+            waveCtrl.setChannelPos("2",pos2);
+            updateWave();
+            waveCtrl.setGirdValue(gird);
+//            websocket.send(json);
+
+
+        });
+
+
+        function ctrlSample(samp) {
+            var ctrl = new Object();
+            ctrl.sample = samp;
+            var json = JSON.stringify(ctrl);
+            websocket.send(json);
+        }
+
 
 
 
 
         var waveCtrl = new WaveCtrl(14,8);
-        waveCtrl.setGirdValue(1000);
+        waveCtrl.setGirdValue(gird);
         waveCtrl.addChannel("1","#00ff00");
         waveCtrl.addChannel("2","#ff0000");
         waveCtrl.setChannelPos("1",0.5);
-        waveCtrl.setChannelPos("2",-0.5);
+        waveCtrl.setChannelPos("2",pos2);
         var start = 0;
         var inte = 1;
         function timer() {
@@ -236,23 +282,30 @@
 
         }
 
+        function updateWave() {
+            waveCtrl.update(ctx);
+        }
+
         resizeWave();
-        timer();
-        setInterval(timer,20);
+        updateWave();
+//        timer();
+//        setInterval(timer,20);
 
 
 
-        var host = 'ws://localhost:8000/dataPush.py';
+        var host = 'ws://192.168.10.175:8000/dataPush.py';
 
         var websocket = new WebSocket(host);
 
         websocket.onopen = function (evt) { };
         websocket.onmessage = function(evt) {
 //                $('#count').html($.parseJSON(evt.data)['inventoryCount']);
-            alert(evt.data);
+            var data =  eval('(' + evt.data + ')');
+//            alert(data.wave);
+            waveCtrl.setChannelWave("2",data.wave);
+            waveCtrl.update(ctx);
         };
         websocket.onerror = function (evt) { };
-//        websocket.send('im brower');
 
 
     });

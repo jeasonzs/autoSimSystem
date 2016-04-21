@@ -151,7 +151,7 @@ function WaveCtrl(girdNumX,girdNumY) {
 
         function drawBackGround(){
             ctx.beginPath();
-            ctx.fillStyle="rgba(20,20,20,1)";
+            ctx.fillStyle="rgba(48,15,38,1)";
             ctx.fillRect(waveRect.x,waveRect.y,waveRect.width,waveRect.height);
 
             ctx.strokeStyle = "#ffffff";

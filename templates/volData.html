@@ -43,31 +43,31 @@
 
             <div class="data">
                 <table border="0" cellspacing="0" cellpadding="0">
-                    <tr><td>故障1</td><td>00.00</td><td>12.56</td></tr>
-                    <tr><td>故障2</td><td>00.00</td><td>12.56</td></tr>
-                    <tr><td>故障3</td><td>00.00</td><td>12.56</td></tr>
-                    <tr><td>故障4</td><td>00.00</td><td>12.56</td></tr>
-                    <tr><td>故障5</td><td>00.00</td><td>12.56</td></tr>
-                    <tr><td>故障6</td><td>00.00</td><td>12.56</td></tr>
-                    <tr><td>故障7</td><td>00.00</td><td>12.56</td></tr>
-                    <tr><td>故障8</td><td>00.00</td><td>12.56</td></tr>
-                    <tr><td>故障9</td><td>00.00</td><td>12.56</td></tr>
-                    <tr><td>故障10</td><td>00.00</td><td>12.56</td></tr>
-                    <tr><td>故障11</td><td>00.00</td><td>12.56</td></tr>
-                    <tr><td>故障12</td><td>00.00</td><td>12.56</td></tr>
-                    <tr><td>故障13</td><td>00.00</td><td>12.56</td></tr>
-                    <tr><td>故障14</td><td>00.00</td><td>12.56</td></tr>
-                    <tr><td>故障15</td><td>00.00</td><td>12.56</td></tr>
-                    <tr><td>故障16</td><td>00.00</td><td>12.56</td></tr>
-                    <tr><td>故障17</td><td>00.00</td><td>12.56</td></tr>
-                    <tr><td>故障18</td><td>00.00</td><td>12.56</td></tr>
-                    <tr><td>故障19</td><td>00.00</td><td>12.56</td></tr>
-                    <tr><td>故障20</td><td>00.00</td><td>12.56</td></tr>
-                    <tr><td>故障21</td><td>00.00</td><td>12.56</td></tr>
-                    <tr><td>故障22</td><td>00.00</td><td>12.56</td></tr>
-                    <tr><td>故障23</td><td>00.00</td><td>12.56</td></tr>
-                    <tr><td>故障24</td><td>00.00</td><td>12.56</td></tr>
-                    <tr><td>故障25</td><td>00.00</td><td>12.56</td></tr>
+                    <tr id="issue1"><td>故障1</td><td>00.00</td><td>12.56</td></tr>
+                    <tr id="issue2"><td>故障2</td><td>00.00</td><td>12.56</td></tr>
+                    <tr id="issue3"><td>故障3</td><td>00.00</td><td>12.56</td></tr>
+                    <tr id="issue4"><td>故障4</td><td>00.00</td><td>12.56</td></tr>
+                    <tr id="issue5"><td>故障5</td><td>00.00</td><td>12.56</td></tr>
+                    <tr id="issue6"><td>故障6</td><td>00.00</td><td>12.56</td></tr>
+                    <tr id="issue7"><td>故障7</td><td>00.00</td><td>12.56</td></tr>
+                    <tr id="issue8"><td>故障8</td><td>00.00</td><td>12.56</td></tr>
+                    <tr id="issue9"><td>故障9</td><td>00.00</td><td>12.56</td></tr>
+                    <tr id="issue10"><td>故障10</td><td>00.00</td><td>12.56</td></tr>
+                    <tr id="issue11"><td>故障11</td><td>00.00</td><td>12.56</td></tr>
+                    <tr id="issue12"><td>故障12</td><td>00.00</td><td>12.56</td></tr>
+                    <tr id="issue13"><td>故障13</td><td>00.00</td><td>12.56</td></tr>
+                    <tr id="issue14"><td>故障14</td><td>00.00</td><td>12.56</td></tr>
+                    <tr id="issue15"><td>故障15</td><td>00.00</td><td>12.56</td></tr>
+                    <tr id="issue16"><td>故障16</td><td>00.00</td><td>12.56</td></tr>
+                    <tr id="issue17"><td>故障17</td><td>00.00</td><td>12.56</td></tr>
+                    <tr id="issue18"><td>故障18</td><td>00.00</td><td>12.56</td></tr>
+                    <tr id="issue19"><td>故障19</td><td>00.00</td><td>12.56</td></tr>
+                    <tr id="issue20"><td>故障20</td><td>00.00</td><td>12.56</td></tr>
+                    <tr id="issue21"><td>故障21</td><td>00.00</td><td>12.56</td></tr>
+                    <tr id="issue22"><td>故障22</td><td>00.00</td><td>12.56</td></tr>
+                    <tr id="issue23"><td>故障23</td><td>00.00</td><td>12.56</td></tr>
+                    <tr id="issue24"><td>故障24</td><td>00.00</td><td>12.56</td></tr>
+                    <tr id="issue25"><td>故障25</td><td>00.00</td><td>12.56</td></tr>
 
                 </table>
             </div>
@@ -79,6 +79,26 @@
     </div>
 </div>
 
+
+<script type="text/javascript">
+
+    $(document).ready(function() {
+        var host = 'ws://192.168.10.175:8000/volPush.py';
+        var websocket = new WebSocket(host);
+        websocket.onopen = function (evt) { };
+        websocket.onmessage = function(evt) {
+            var data =  eval('(' + evt.data + ')');
+            for (i in data.vol) {
+                ch = data.vol[i]
+                for (j in ch) {
+                    $("#issue" + j).children().eq(parseInt(i)+1).html(parseInt(ch[j])/1000);
+                }
+
+            }
+        };
+        websocket.onerror = function (evt) { };
+    });
+</script>
 
 </body>
 </html>

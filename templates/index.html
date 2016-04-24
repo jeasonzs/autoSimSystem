@@ -52,6 +52,8 @@
             background:  rgb(169,170,171);
             color: #ffffff;
         }
+
+
     </style>
 
 </head>
@@ -77,27 +79,25 @@
                 <div class="header">故障号</div>
                 <div class="data">
                     <ul>
-                        <!--{% for issue in issues %}-->
-                            <!--<li><a href="#">{{ issue }}</a></li>-->
-                        <!--{% end %}-->
-                        <li><a href="#">故障1</a></li>
-                        <li><a href="#">故障2</a></li>
-                        <li><a href="#">故障3</a></li>
-                        <li><a href="#">故障4</a></li>
-                        <li><a href="#">故障5</a></li>
-                        <li><a href="#">故障6</a></li>
-                        <li><a href="#">故障7</a></li>
-                        <li><a href="#">故障8</a></li>
-                        <li><a href="#">故障9</a></li>
-                        <li><a href="#">故障10</a></li>
-                        <li><a href="#">故障11</a></li>
-                        <li><a href="#">故障12</a></li>
-                        <li><a href="#">故障13</a></li>
-                        <li><a href="#">故障14</a></li>
-                        <li><a href="#">故障15</a></li>
-                        <li><a href="#">故障16</a></li>
-                        <li><a href="#">故障17</a></li>
-                        <li><a href="#">故障1</a></li>
+
+                        <li id="issue-0"><a href="#">故障1</a></li>
+                        <li id="issue-1"><a href="#">故障2</a></li>
+                        <li id="issue-2"><a href="#">故障3</a></li>
+                        <li id="issue-3"><a href="#">故障4</a></li>
+                        <li id="issue-4"><a href="#">故障5</a></li>
+                        <li id="issue-5"><a href="#">故障6</a></li>
+                        <li id="issue-6"><a href="#">故障7</a></li>
+                        <li id="issue-7"><a href="#">故障8</a></li>
+                        <li id="issue-8"><a href="#">故障9</a></li>
+                        <li id="issue-9"><a href="#">故障10</a></li>
+                        <li id="issue-10"><a href="#">故障11</a></li>
+                        <li id="issue-11"><a href="#">故障12</a></li>
+                        <li id="issue-12"><a href="#">故障13</a></li>
+                        <li id="issue-13"><a href="#">故障14</a></li>
+                        <li id="issue-14"><a href="#">故障15</a></li>
+                        <li id="issue-15"><a href="#">故障16</a></li>
+                        <li id="issue-16"><a href="#">故障17</a></li>
+                        <li id="issue-17"><a href="#">故障1</a></li>
                     </ul>
                 </div>
             </div>
@@ -106,15 +106,15 @@
                 <div class="header">故障类型</div>
                 <div class="data">
                     <ul>
-                        <li><a href="#">清除故障</a></li>
-                        <li><a href="#">断路</a></li>
-                        <li><a href="#">对地短路</a></li>
-                        <li><a href="#">串联电阻</a></li>
-                        <li><a href="#">并联电阻</a></li>
-                        <li><a href="#">间隙性断路</a></li>
-                        <li><a href="#">间隙性对地短路</a></li>
-                        <li><a href="#">间隙性串联电阻</a></li>
-                        <li><a href="#">间隙性并联电阻</a></li>
+                        <li id="issue-type-0"><a href="#">清除故障</a></li>
+                        <li id="issue-type-1"><a href="#">断路</a></li>
+                        <li id="issue-type-2"><a href="#">对地短路</a></li>
+                        <li id="issue-type-3"><a href="#">串联电阻</a></li>
+                        <li id="issue-type-4"><a href="#">并联电阻</a></li>
+                        <li id="issue-type-5"><a href="#">间隙性断路</a></li>
+                        <li id="issue-type-6"><a href="#">间隙性对地短路</a></li>
+                        <li id="issue-type-7"><a href="#">间隙性串联电阻</a></li>
+                        <li id="issue-type-8"><a href="#">间隙性并联电阻</a></li>
                     </ul>
                 </div>
             </div>
@@ -139,6 +139,47 @@
 
 
 <script type="text/javascript">
+    $(document).ready(function() {
+        var selected_issue = "issue-0";
+        $("#"+selected_issue).addClass("table-sel");
+        $("#issue-type-0").addClass("table-sel");
+
+        $(".table-issue-num .data ul li").click(function(){
+            $(".table-issue-num .data ul .table-sel").removeClass("table-sel");
+            $(this).addClass("table-sel");
+            selected_issue = $(this).attr("id");
+
+            $(".table-issue-type .data ul .table-sel").removeClass("table-sel");
+            getIssue(selected_issue,function(type) {
+                $("#"+type).addClass("table-sel");
+            });
+
+        });
+
+        $(".table-issue-type .data ul li").click(function(){
+            $(".table-issue-type .data ul .table-sel").removeClass("table-sel");
+            $(this).addClass("table-sel");
+            setIssue(selected_issue,$(this).attr("id"));
+        });
+
+        $(".table-issue-clean .data").click(function(){
+//            alert("dasd");
+        });
+
+        function setIssue(issueNum,issueType) {
+            num = issueNum.split("-")[1];
+            type = issueType.split("-")[2];
+             $.getJSON("/service/issueContrl.py",{opt:"setIssue",num:num,type:type});
+        }
+
+        function getIssue(issueNum,callback) {
+            num = issueNum.split("-")[1];
+            $.getJSON("/service/issueContrl.py",{opt:"getIssue",num:num},function(result){
+                callback("issue-type-"+result.type);
+            });
+        }
+
+    });
 
 
 </script>

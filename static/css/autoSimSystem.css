@@ -122,6 +122,19 @@ p {
     line-height: 30px;
     padding-left: 30px;
 }
+.table > .data > ul > li {
+    margin-left: 4px;
+    margin-right: 4px;
+}
+
+.table-sel {
+    background: rgb(250,184,123);
+    margin-left: 4px;
+    margin-right: 4px;
+}
+.table-sel > a {
+    color: #ffffff;
+}
 
 
 

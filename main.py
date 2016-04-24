@@ -16,7 +16,7 @@ from setting import SettingHandler
 
 
 from tornado.options import define, options
-define("port", default=8000, help="run on the given port", type=int)
+define("port", default=8001, help="run on the given port", type=int)
 
 
 if __name__ == "__main__":

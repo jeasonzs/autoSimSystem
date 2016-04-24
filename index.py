@@ -10,8 +10,9 @@ import tornado.web
 
 class IndexHandler(tornado.web.RequestHandler):
     def get(self):
-        dat=[]
-        for i in range(0,10000):
-            item = '故障'+str(i)
-            dat.append(item)
-        self.render('index.html',issues=dat)
+        self.render('index.html')
+        # dat=[]
+        # for i in range(0,10000):
+        #     item = '故障'+str(i)
+        #     dat.append(item)
+        # self.render('index.html',issues=dat)

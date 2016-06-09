@@ -163,7 +163,7 @@
         });
 
         $(".table-issue-clean .data").click(function(){
-//            alert("dasd");
+            clearIssue();
         });
 
         function setIssue(issueNum,issueType) {
@@ -177,6 +177,10 @@
             $.getJSON("/service/issueContrl.py",{opt:"getIssue",num:num},function(result){
                 callback("issue-type-"+result.type);
             });
+        }
+
+        function clearIssue(issueNum,issueType) {
+             $.getJSON("/service/issueContrl.py",{opt:"clearIssue",num:0});
         }
 
     });

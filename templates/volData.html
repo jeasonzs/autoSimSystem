@@ -84,6 +84,7 @@
 
     $(document).ready(function() {
         var host = 'ws://'+window.location.host+':8000/service/volPush.py';
+//        var host = 'ws://192.168.10.175:8000/service/volPush.py';
         var websocket = new WebSocket(host);
         websocket.onopen = function (evt) { };
         websocket.onmessage = function(evt) {

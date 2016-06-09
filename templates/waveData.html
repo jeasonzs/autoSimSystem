@@ -288,10 +288,11 @@
 
         resizeWave();
         updateWave();
-        timer();
-        setInterval(timer,20);
+//        timer();
+//        setInterval(timer,20);
 
         var host = 'ws://'+window.location.host+':8000/service/wavePush.py';
+//        var host = 'ws://192.168.10.175:8000/service/wavePush.py';
         var websocket = new WebSocket(host);
 
         websocket.onopen = function (evt) { };
